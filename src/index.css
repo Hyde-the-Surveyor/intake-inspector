@@ -1,0 +1,145 @@
+/* 全体の土台。落ち着いたモノトーン基調。色を使うのは注意（warn）と少数派の強調だけ */
+:root {
+  --bg: #ffffff;
+  --panel: #f6f6f7;
+  --panel-active: #ebebee;
+  --text: #4b4b52;
+  --text-h: #15151a;
+  --text-muted: #8a8a93;
+  --border: #e2e2e6;
+  --border-strong: #c4c4cb;
+  --code-bg: #f1f1f3;
+  --bar-track: #ececef;
+  --bar: #6e6e78;
+
+  --warn: #c7811a;
+  --warn-bg: #fff6e6;
+  --warn-text: #7a4b00;
+  --ws-bg: #ffd166;
+
+  --sans: system-ui, -apple-system, 'Segoe UI', 'Hiragino Sans', 'Noto Sans JP', Meiryo, sans-serif;
+  --mono: ui-monospace, 'Cascadia Mono', Consolas, 'BIZ UDGothic', 'MS Gothic', monospace;
+
+  font: 16px/1.5 var(--sans);
+  color: var(--text);
+  background: var(--bg);
+  color-scheme: light dark;
+  -webkit-text-size-adjust: 100%;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #17171b;
+    --panel: #1f1f25;
+    --panel-active: #2a2a32;
+    --text: #b3b3bb;
+    --text-h: #f1f1f4;
+    --text-muted: #7d7d87;
+    --border: #2f2f37;
+    --border-strong: #4a4a54;
+    --code-bg: #24242b;
+    --bar-track: #2a2a32;
+    --bar: #a0a0aa;
+
+    --warn: #e0a24a;
+    --warn-bg: #3a2a10;
+    --warn-text: #ffd89a;
+    --ws-bg: #a86f00;
+  }
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  color: var(--text-h);
+  font-weight: 600;
+  line-height: 1.3;
+}
+
+a {
+  color: var(--text-h);
+}
+
+button {
+  font: inherit;
+  padding: 0.4rem 0.9rem;
+  border: 1px solid var(--border-strong);
+  border-radius: 4px;
+  background: var(--bg);
+  color: var(--text-h);
+  cursor: pointer;
+}
+
+button:hover:not(:disabled) {
+  background: var(--panel-active);
+}
+
+button:disabled {
+  opacity: 0.5;
+  cursor: default;
+}
+
+button:focus-visible,
+input:focus-visible,
+a:focus-visible {
+  outline: 2px solid var(--text-h);
+  outline-offset: 2px;
+}
+
+/* 値は等幅で、1 文字も変えずに表示する。空白が潰れないように pre-wrap */
+code,
+.value {
+  font-family: var(--mono);
+  font-size: 0.92em;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+
+code.value {
+  padding: 0.05em 0.3em;
+  border-radius: 3px;
+  background: var(--code-bg);
+  color: var(--text-h);
+}
+
+/* 前後の空白を見えるようにする。文字自体は置き換えない */
+.ws {
+  background: var(--ws-bg);
+  outline: 1px solid var(--warn);
+  border-radius: 2px;
+}
+
+/* 横に収まらない表は、表の中だけスクロールさせる */
+.table-scroll {
+  width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.level-icon {
+  font-family: var(--sans);
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
+}

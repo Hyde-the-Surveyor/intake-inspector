@@ -1,0 +1,94 @@
+.overview {
+  margin: 0 0 1.5rem;
+}
+
+.overview-hint {
+  margin: 0 0 0.5rem;
+  font-size: 0.85rem;
+}
+
+.overview-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.95rem;
+}
+
+.overview-table th,
+.overview-table td {
+  padding: 0.45rem 0.5rem;
+  border-bottom: 1px solid var(--border);
+  text-align: left;
+  vertical-align: top;
+  white-space: nowrap;
+}
+
+.overview-table th {
+  font-weight: 500;
+  font-size: 0.85rem;
+  color: var(--text);
+  border-bottom: 2px solid var(--border-strong);
+}
+
+.overview-table .num {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+.overview-table tbody tr {
+  cursor: pointer;
+}
+
+.overview-table tbody tr:hover {
+  background: var(--panel);
+}
+
+.overview-table tbody tr:focus-visible {
+  outline: 2px solid var(--text-h);
+  outline-offset: -2px;
+}
+
+.overview-table tbody tr.selected {
+  background: var(--panel-active);
+  box-shadow: inset 3px 0 0 var(--text-h);
+}
+
+.overview-table .col-warnings {
+  white-space: normal;
+  min-width: 14rem;
+}
+
+.overview-table .none {
+  color: var(--text-muted);
+}
+
+/* 警告バッジ。色だけで区別せず、アイコンと「注意」「情報」の文字を必ず付ける */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  margin: 0 0.4rem 0.25rem 0;
+  padding: 0.1rem 0.5rem;
+  border: 1px solid var(--border-strong);
+  border-radius: 999px;
+  font-size: 0.8rem;
+  line-height: 1.5;
+  color: var(--text-h);
+  background: var(--bg);
+  white-space: nowrap;
+}
+
+.badge-level {
+  font-weight: 600;
+}
+
+.badge-warn {
+  border-color: var(--warn);
+  background: var(--warn-bg);
+  color: var(--warn-text);
+}
+
+/* 一覧の列名は折り返さない（表の中だけ横スクロールさせる） */
+.overview-table .col-name .value {
+  white-space: pre;
+  overflow-wrap: normal;
+}

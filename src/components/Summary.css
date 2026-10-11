@@ -1,0 +1,46 @@
+.summary {
+  margin: 0 0 1.5rem;
+}
+
+.summary-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin: 0;
+  padding: 0;
+}
+
+.summary-item {
+  flex: 1 1 8rem;
+  min-width: 0;
+  padding: 0.5rem 0.75rem;
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  background: var(--panel);
+}
+
+.summary-file {
+  flex-basis: 100%;
+}
+
+.summary-item dt {
+  font-size: 0.8rem;
+  color: var(--text);
+}
+
+.summary-item dd {
+  margin: 0.15rem 0 0;
+  font-size: 1.1rem;
+  color: var(--text-h);
+  font-variant-numeric: tabular-nums;
+  overflow-wrap: anywhere;
+}
+
+.summary-item.has-warn {
+  border-color: var(--warn);
+  background: var(--warn-bg);
+}
+
+.summary-item.has-warn dd {
+  color: var(--warn-text);
+}

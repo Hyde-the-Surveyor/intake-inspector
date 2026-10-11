@@ -1,0 +1,84 @@
+.file-input {
+  margin: 0 0 1.5rem;
+}
+
+.dropzone {
+  border: 2px dashed var(--border-strong);
+  border-radius: 6px;
+  padding: 1.25rem 1rem;
+  text-align: center;
+  background: var(--panel);
+  transition: background 0.1s, border-color 0.1s;
+}
+
+.dropzone.dragging {
+  border-color: var(--text-h);
+  background: var(--panel-active);
+}
+
+.dropzone-text {
+  margin: 0;
+  font-weight: 500;
+  color: var(--text-h);
+}
+
+.dropzone-or {
+  margin: 0.25rem 0 0.75rem;
+  font-size: 0.85rem;
+}
+
+.dropzone-actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.file-options {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem 1.5rem;
+  margin-top: 0.75rem;
+}
+
+.encoding {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.25rem 0.75rem;
+  border: 0;
+  padding: 0;
+  margin: 0;
+}
+
+.encoding legend {
+  float: left;
+  padding: 0;
+  margin-right: 0.25rem;
+  font-size: 0.9rem;
+}
+
+.encoding label,
+.header-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  font-size: 0.95rem;
+  cursor: pointer;
+}
+
+.file-status {
+  margin: 0.5rem 0 0;
+  font-size: 0.9rem;
+}
+
+.file-error {
+  margin: 0.5rem 0 0;
+  padding: 0.5rem 0.75rem;
+  border: 1px solid var(--warn);
+  border-radius: 4px;
+  color: var(--warn-text);
+  background: var(--warn-bg);
+  font-size: 0.9rem;
+}
