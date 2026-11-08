@@ -5,6 +5,9 @@ export const LEN_MINORITY_SHARE = 0.05;  // 構成比 5% 未満の長さを「�
 export const LEN_DOMINANT_SHARE = 0.50;  // 最多の長さが 50% 以上を占める列だけを対象にする
 export const LEN_MAX_GROUPS    = 5;      // 長さが 5 種類以下の列だけを対象にする
 
+// v0.2 前回との比較
+export const MISSING_UP_POINTS = 0.05;   // 空欄の割合が 5ポイント以上増えたら「増えた」とみなす
+
 // 警告の見出し（仕様 6-6）。message は説明文のみを持つ
 export const WARNING_TITLES: Record<WarningCode, string> = {
   MISSING: '欠損があります',

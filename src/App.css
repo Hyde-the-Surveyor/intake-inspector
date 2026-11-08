@@ -27,6 +27,32 @@
   color: var(--text-muted);
 }
 
+/* 画面の切り替えタブ。選択中は太字＋下線で示す（色だけに頼らない） */
+.tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25rem;
+  margin: 0 0 1.25rem;
+  border-bottom: 1px solid var(--border-strong);
+}
+
+.tab {
+  margin-bottom: -1px;
+  padding: 0.5rem 1rem;
+  border: 1px solid transparent;
+  border-bottom: 3px solid transparent;
+  border-radius: 4px 4px 0 0;
+  background: transparent;
+  color: var(--text);
+}
+
+.tab[aria-selected='true'] {
+  border-color: var(--border-strong) var(--border-strong) var(--text-h);
+  background: var(--panel);
+  color: var(--text-h);
+  font-weight: 600;
+}
+
 main h2 {
   font-size: 1.15rem;
   margin: 0 0 0.5rem;

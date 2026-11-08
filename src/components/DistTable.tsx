@@ -18,9 +18,17 @@ interface Props {
   rows: DistRow[];
   total: number;              // 構成比の分母（空欄を除いた件数）
   highlightNote?: string;     // 強調した行の意味（例：少数派）
+  highlightTag?: string;      // 強調した行に付ける文字ラベル（既定：少数派）
 }
 
-export function DistTable({ caption, valueHeader, rows, total, highlightNote }: Props) {
+export function DistTable({
+  caption,
+  valueHeader,
+  rows,
+  total,
+  highlightNote,
+  highlightTag = '少数派',
+}: Props) {
   const hasHighlight = rows.some((r) => r.highlight);
   return (
     <div className="dist">
@@ -44,7 +52,7 @@ export function DistTable({ caption, valueHeader, rows, total, highlightNote }: 
                 <tr key={r.key} className={r.highlight ? 'minority' : undefined}>
                   <td>
                     {r.label}
-                    {r.highlight && <span className="minority-tag">少数派</span>}
+                    {r.highlight && <span className="minority-tag">{highlightTag}</span>}
                   </td>
                   <td className="num">{formatCount(r.count)}</td>
                   <td className="num">{formatShare(r.count, total)}</td>

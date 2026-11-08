@@ -1,0 +1,65 @@
+/* 「前回と比べる」画面。左右 2 カラム、狭い画面では上下に並べる */
+.compare-slots {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+.compare-slot {
+  min-width: 0;
+}
+
+.compare-slot-title {
+  margin: 0 0 0.4rem;
+  font-size: 1rem;
+}
+
+.compare-slot-file {
+  margin: 0.5rem 0;
+  font-size: 0.9rem;
+  overflow-wrap: anywhere;
+}
+
+.compare-slot-file .none {
+  color: var(--text-muted);
+}
+
+.compare-slot-detected {
+  margin-left: 0.25rem;
+  color: var(--text);
+}
+
+.compare-summary-file {
+  flex-basis: 45%;
+}
+
+.compare-nochange {
+  font-size: 0.8rem;
+}
+
+/* 前回・今回の分布表を並べる */
+.compare-pair {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0 1rem;
+}
+
+.compare-pair > .dist {
+  min-width: 0;
+}
+
+.compare-pair .dist-table .bar-col {
+  width: 30%;
+  min-width: 60px;
+}
+
+@media (max-width: 640px) {
+  .compare-slots,
+  .compare-pair {
+    grid-template-columns: 1fr;
+  }
+
+  .compare-summary-file {
+    flex-basis: 100%;
+  }
+}

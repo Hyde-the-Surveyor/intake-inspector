@@ -1,4 +1,5 @@
 import { useCallback, useMemo, useState } from 'react';
+import type { KeyboardEvent } from 'react';
 import { decode } from './lib/decode';
 import { parse } from './lib/parse';
 import { profileColumns } from './lib/profile';
@@ -7,6 +8,7 @@ import { FileInput } from './components/FileInput';
 import { Summary } from './components/Summary';
 import { Overview } from './components/Overview';
 import { ColumnDetail } from './components/ColumnDetail';
+import { CompareView } from './components/CompareView';
 import './App.css';
 
 const REPO_URL = 'https://github.com/Hyde-the-Surveyor/intake-inspector';
@@ -58,7 +60,15 @@ function analyze(source: Source, encoding: EncodingChoice, hasHeader: boolean): 
   };
 }
 
+type TabId = 'single' | 'compare';
+
+const TABS: { id: TabId; label: string }[] = [
+  { id: 'single', label: '1つのファイルを診断' },
+  { id: 'compare', label: '前回と比べる' },
+];
+
 function App() {
+  const [tab, setTab] = useState<TabId>('single');
   const [source, setSource] = useState<Source | null>(null);
   const [encoding, setEncoding] = useState<EncodingChoice>('auto');
   const [hasHeader, setHasHeader] = useState(true);
@@ -117,6 +127,20 @@ function App() {
     }
   }, [loadBuffer]);
 
+  // タブは ← → / Home / End で移動する（WAI-ARIA のタブの操作）
+  function handleTabKey(e: KeyboardEvent<HTMLButtonElement>) {
+    const i = TABS.findIndex((t) => t.id === tab);
+    let next = i;
+    if (e.key === 'ArrowRight') next = (i + 1) % TABS.length;
+    else if (e.key === 'ArrowLeft') next = (i - 1 + TABS.length) % TABS.length;
+    else if (e.key === 'Home') next = 0;
+    else if (e.key === 'End') next = TABS.length - 1;
+    else return;
+    e.preventDefault();
+    setTab(TABS[next].id);
+    document.getElementById(`tab-${TABS[next].id}`)?.focus();
+  }
+
   return (
     <div className="app">
       <header className="app-header">
@@ -125,7 +149,32 @@ function App() {
         <p className="privacy">読み込んだファイルはブラウザの外に送信されません</p>
       </header>
 
+      <div className="tabs" role="tablist" aria-label="画面の切り替え">
+        {TABS.map((t) => (
+          <button
+            key={t.id}
+            id={`tab-${t.id}`}
+            type="button"
+            role="tab"
+            className="tab"
+            aria-selected={tab === t.id}
+            aria-controls={`panel-${t.id}`}
+            tabIndex={tab === t.id ? 0 : -1}
+            onClick={() => setTab(t.id)}
+            onKeyDown={handleTabKey}
+          >
+            {t.label}
+          </button>
+        ))}
+      </div>
+
+      {/* 2 つの画面は常に表示用の部品を持ち続け、非表示側は hidden にする（読み込んだファイルを保持するため） */}
       <main>
+        <div id="panel-compare" role="tabpanel" aria-labelledby="tab-compare" hidden={tab !== 'compare'}>
+          <CompareView />
+        </div>
+
+        <div id="panel-single" role="tabpanel" aria-labelledby="tab-single" hidden={tab !== 'single'}>
         <FileInput
           encoding={encoding}
           onEncodingChange={setEncoding}
@@ -160,6 +209,7 @@ function App() {
             {selected && <ColumnDetail profile={selected} />}
           </>
         )}
+        </div>
       </main>
 
       <footer className="app-footer">
